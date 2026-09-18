@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>4njos — Projetos Hidráulicos de Piscinas</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --navy: #1f3864;
+  --navy-deep: #12233f;
+  --paper: #f7f6f2;
+  --paper-alt: #eef0ee;
+  --line: #d7dbe2;
+  --ink: #16202f;
+  --ink-soft: #5c6675;
+  --accent: #c07a2b;
+  --white: #ffffff;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.6;
+}
+.container { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+.eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+}
+h1, h2, h3 { font-weight: 700; color: var(--navy-deep); letter-spacing: -0.01em; }
+a { color: inherit; }
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 40;
+  background: rgba(247,246,242,0.92); backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--line);
+}
+nav .row { display: flex; justify-content: space-between; align-items: center; padding: 16px 28px; }
+.logo { font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 18px; color: var(--navy); letter-spacing: 0.02em; }
+.logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 28px; font-size: 14px; font-weight: 500; }
+.nav-links a { text-decoration: none; color: var(--ink-soft); }
+.nav-links a:hover { color: var(--navy); }
+.nav-cta {
+  background: var(--navy); color: #fff; padding: 9px 18px; border-radius: 3px;
+  font-size: 13.5px; font-weight: 600; text-decoration: none; white-space: nowrap;
+}
+.nav-cta:hover { background: var(--navy-deep); }
+@media (max-width: 780px) { .nav-links { display: none; } }
+
+/* HERO */
+.hero {
+  padding: 90px 0 70px;
+  background:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-color: var(--paper);
+  position: relative;
+  border-bottom: 1px solid var(--line);
+}
+.hero .grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; }
+@media (max-width: 900px) { .hero .grid { grid-template-columns: 1fr; } }
+.hero h1 { font-size: 44px; line-height: 1.12; margin: 14px 0 20px; }
+.hero p.lead { font-size: 17px; color: var(--ink-soft); max-width: 46ch; margin-bottom: 30px; }
+.cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--navy); color: #fff; padding: 13px 24px; border-radius: 3px;
+  font-weight: 600; font-size: 14.5px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-primary:hover { background: var(--navy-deep); }
+.btn-secondary {
+  border: 1px solid var(--navy); color: var(--navy); padding: 13px 24px; border-radius: 3px;
+  font-weight: 600; font-size: 14.5px; text-decoration: none;
+}
+.btn-secondary:hover { background: rgba(31,56,100,0.06); }
+
+/* Hero diagram */
+.hero-diagram { background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 22px; box-shadow: 0 10px 30px rgba(20,40,74,0.08); }
+.hero-diagram .tag { font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-soft); margin-bottom:10px; }
+
+/* SECTIONS */
+section { padding: 78px 0; }
+.section-head { max-width: 640px; margin-bottom: 44px; }
+.section-head h2 { font-size: 30px; margin-top: 8px; }
+.section-head p { color: var(--ink-soft); margin-top: 12px; font-size: 15.5px; }
+
+/* Especialização cards */
+.spec-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width: 800px) { .spec-grid { grid-template-columns: 1fr; } }
+.spec-card {
+  background: #fff; border: 1px solid var(--line); border-left: 3px solid var(--navy);
+  border-radius: 4px; padding: 26px;
+}
+.spec-card .num { font-family:'IBM Plex Mono',monospace; color: var(--accent); font-size: 13px; font-weight: 600; }
+.spec-card h3 { font-size: 18px; margin: 8px 0 10px; }
+.spec-card p { color: var(--ink-soft); font-size: 14.5px; }
+
+/* Diferencial */
+.diff-section { background: var(--navy-deep); color: #fff; }
+.diff-section .section-head p, .diff-section .eyebrow { color: #b9c4d6; }
+.diff-section .section-head h2 { color: #fff; }
+.diff-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+@media (max-width: 800px) { .diff-grid { grid-template-columns: 1fr; } }
+.diff-item { border: 1px solid rgba(255,255,255,0.18); border-radius: 4px; padding: 22px; background: rgba(255,255,255,0.03); }
+.diff-item h3 { color: #fff; font-size: 16.5px; margin-bottom: 8px; display:flex; align-items:center; gap:10px;}
+.diff-item p { color: #c7d1e0; font-size: 14.5px; }
+.diff-icon { width: 20px; height: 20px; flex-shrink:0; }
+
+/* Segurança */
+.safety-section { background: #fff; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.safety-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 48px; align-items: center; }
+@media (max-width: 900px) { .safety-grid { grid-template-columns: 1fr; } }
+.stat-box { background: var(--paper-alt); border: 1px solid var(--line); border-radius: 6px; padding: 28px; }
+.stat-num { font-family:'IBM Plex Mono',monospace; font-size: 42px; font-weight: 600; color: var(--navy); line-height:1; }
+.stat-label { font-size: 13.5px; color: var(--ink-soft); margin-top: 10px; }
+.stat-source { font-size: 11.5px; color: #93a0b0; margin-top: 14px; font-family:'IBM Plex Mono',monospace; }
+.safety-text h2 { font-size: 27px; margin-bottom: 16px; }
+.safety-text p { color: var(--ink-soft); font-size: 15.5px; margin-bottom: 14px; }
+.safety-list { list-style: none; margin-top: 18px; }
+.safety-list li { display:flex; gap:10px; font-size:14.5px; color: var(--ink); margin-bottom:9px; align-items:flex-start; }
+.check { color: var(--navy); font-weight:700; margin-top:1px; }
+
+/* Como Funciona */
+.flow { display: flex; flex-wrap: wrap; gap: 0; counter-reset: step; }
+.flow-step {
+  flex: 1; min-width: 180px; background:#fff; border:1px solid var(--line); padding: 22px 18px;
+  position: relative;
+}
+.flow-step:not(:last-child)::after {
+  content:"→"; position:absolute; right:-14px; top:50%; transform:translateY(-50%);
+  color: var(--accent); font-size:18px; z-index:2; display:none;
+}
+@media (min-width: 900px) { .flow-step:not(:last-child)::after { display:block; } }
+.flow-step .step-num {
+  font-family:'IBM Plex Mono',monospace; font-size: 12px; color:#fff; background: var(--navy);
+  width: 26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-bottom:12px;
+}
+.flow-step h3 { font-size: 15px; margin-bottom: 6px; }
+.flow-step p { font-size: 13px; color: var(--ink-soft); }
+
+/* Projetos */
+.project-highlight {
+  background: var(--paper-alt); border: 1px solid var(--line); border-radius: 6px;
+  overflow: hidden;
+}
+.project-highlight .ph-header { padding: 30px 34px 22px; }
+.project-highlight .client-name { font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--accent); font-weight:600; }
+.project-highlight h3 { font-size: 22px; margin: 8px 0 10px; }
+.project-highlight p { color: var(--ink-soft); font-size: 14.5px; max-width: 65ch; }
+.project-badge { font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-soft); border:1px solid var(--line); border-radius:14px; padding:5px 12px; background:#fff; display:inline-block; margin-top:14px; }
+.ph-hero { width:100%; display:block; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.ph-gallery { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); }
+.ph-gallery img { width:100%; display:block; }
+
+/* Contato / CTA final */
+.cta-section { background: var(--navy); color:#fff; text-align:center; }
+.cta-section h2 { color:#fff; font-size:30px; margin-bottom: 14px; }
+.cta-section p { color:#c7d1e0; max-width: 50ch; margin: 0 auto 30px; font-size:15.5px; }
+.cta-buttons { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+.btn-white { background:#fff; color:var(--navy); padding:14px 26px; border-radius:3px; font-weight:600; text-decoration:none; font-size:15px; }
+.btn-outline-white { border:1px solid rgba(255,255,255,0.5); color:#fff; padding:14px 26px; border-radius:3px; font-weight:600; text-decoration:none; font-size:15px; }
+
+footer { padding: 32px 0; text-align:center; font-size:12.5px; color: var(--ink-soft); font-family:'IBM Plex Mono',monospace; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="row container">
+    <div class="logo">4njos<span>.</span></div>
+    <div class="nav-links">
+      <a href="#especializacao">Especialização</a>
+      <a href="#diferencial">Diferencial</a>
+      <a href="#seguranca">Segurança</a>
+      <a href="#como-funciona">Como Funciona</a>
+      <a href="#projetos">Projetos</a>
+    </div>
+    <a class="nav-cta" href="https://wa.me/5521969061121" target="_blank">Falar no WhatsApp</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container grid">
+    <div>
+      <div class="eyebrow">Projetos Hidráulicos de Piscinas · Metodologia BIM</div>
+      <h1>Engenharia de piscinas com precisão de projeto, não de improviso.</h1>
+      <p class="lead">A 4njos desenvolve projetos hidráulicos de piscinas residenciais, comerciais e condominiais em metodologia BIM — do memorial de cálculo à documentação técnica, com conformidade normativa e responsabilidade técnica formalizada em cada etapa.</p>
+      <div class="cta-row">
+        <a class="btn-primary" href="https://wa.me/5521969061121" target="_blank">Falar no WhatsApp →</a>
+        <a class="btn-secondary" href="#como-funciona">Ver como funciona</a>
+      </div>
+    </div>
+    <div class="hero-diagram">
+      <div class="tag">// FLUXO_DE_PROJETO.4NJOS</div>
+      <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+        <rect x="10" y="10" width="120" height="50" rx="3" fill="none" stroke="#1f3864" stroke-width="1.5"/>
+        <text x="70" y="30" font-family="IBM Plex Mono" font-size="10" fill="#1f3864" text-anchor="middle">Briefing</text>
+        <text x="70" y="45" font-family="IBM Plex Mono" font-size="8" fill="#5c6675" text-anchor="middle">coleta técnica</text>
+
+        <rect x="150" y="10" width="120" height="50" rx="3" fill="none" stroke="#1f3864" stroke-width="1.5"/>
+        <text x="210" y="30" font-family="IBM Plex Mono" font-size="10" fill="#1f3864" text-anchor="middle">Memorial</text>
+        <text x="210" y="45" font-family="IBM Plex Mono" font-size="8" fill="#5c6675" text-anchor="middle">NBR 10339</text>
+
+        <rect x="290" y="10" width="100" height="50" rx="3" fill="none" stroke="#1f3864" stroke-width="1.5"/>
+        <text x="340" y="30" font-family="IBM Plex Mono" font-size="10" fill="#1f3864" text-anchor="middle">BIM/Revit</text>
+        <text x="340" y="45" font-family="IBM Plex Mono" font-size="8" fill="#5c6675" text-anchor="middle">modelagem</text>
+
+        <line x1="130" y1="35" x2="150" y2="35" stroke="#c07a2b" stroke-width="1.5"/>
+        <line x1="270" y1="35" x2="290" y2="35" stroke="#c07a2b" stroke-width="1.5"/>
+
+        <line x1="340" y1="60" x2="340" y2="90" stroke="#c07a2b" stroke-width="1.5"/>
+        <line x1="70" y1="60" x2="70" y2="90" stroke="#c07a2b" stroke-width="1.5" stroke-dasharray="3,3"/>
+
+        <rect x="10" y="90" width="120" height="50" rx="3" fill="#eef0ee" stroke="#1f3864" stroke-width="1.5"/>
+        <text x="70" y="110" font-family="IBM Plex Mono" font-size="10" fill="#1f3864" text-anchor="middle">Checklist</text>
+        <text x="70" y="125" font-family="IBM Plex Mono" font-size="8" fill="#5c6675" text-anchor="middle">verificação</text>
+
+        <rect x="290" y="90" width="100" height="50" rx="3" fill="none" stroke="#1f3864" stroke-width="1.5"/>
+        <text x="340" y="110" font-family="IBM Plex Mono" font-size="10" fill="#1f3864" text-anchor="middle">ART</text>
+        <text x="340" y="125" font-family="IBM Plex Mono" font-size="8" fill="#5c6675" text-anchor="middle">engenheiro</text>
+
+        <line x1="130" y1="115" x2="150" y2="115" stroke="#c07a2b" stroke-width="1.5" stroke-dasharray="3,3"/>
+        <line x1="150" y1="115" x2="150" y2="115" stroke="#c07a2b" stroke-width="1.5"/>
+        <line x1="70" y1="140" x2="70" y2="170" stroke="#c07a2b" stroke-width="1.5" stroke-dasharray="3,3"/>
+        <line x1="70" y1="115" x2="290" y2="115" stroke="#c07a2b" stroke-width="1.5" stroke-dasharray="3,3"/>
+
+        <rect x="10" y="200" width="380" height="50" rx="3" fill="#1f3864"/>
+        <text x="200" y="222" font-family="IBM Plex Mono" font-size="10" fill="#fff" text-anchor="middle">Entrega ao cliente</text>
+        <text x="200" y="238" font-family="IBM Plex Mono" font-size="8" fill="#c7d1e0" text-anchor="middle">documentação técnica completa · revisão R00</text>
+
+        <line x1="200" y1="140" x2="200" y2="200" stroke="#c07a2b" stroke-width="1.5"/>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<section id="especializacao">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Especialização</div>
+      <h2>Um único foco: hidráulica de piscinas, em qualquer escala.</h2>
+      <p>Sem dispersão de escopo — a 4njos atua exclusivamente com o dimensionamento e a documentação técnica de sistemas hidráulicos de piscinas.</p>
+    </div>
+    <div class="spec-grid">
+      <div class="spec-card">
+        <div class="num">01</div>
+        <h3>Residencial</h3>
+        <p>Projetos para residências unifamiliares, com dimensionamento sob medida para o espaço, o uso e as preferências do cliente.</p>
+      </div>
+      <div class="spec-card">
+        <div class="num">02</div>
+        <h3>Comercial</h3>
+        <p>Hotéis, clubes e empreendimentos comerciais — projetos dimensionados para maior taxa de ocupação e uso intensivo.</p>
+      </div>
+      <div class="spec-card">
+        <div class="num">03</div>
+        <h3>Condominial</h3>
+        <p>Piscinas de uso coletivo, com os requisitos adicionais de segurança e acessibilidade que essa tipologia exige.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="diferencial" class="diff-section">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Diferencial técnico</div>
+      <h2>Metodologia, não improviso.</h2>
+      <p>Cada projeto segue um protocolo técnico estruturado — da coleta de dados à emissão final — com rastreabilidade completa entre cálculos, desenhos e especificações.</p>
+    </div>
+    <div class="diff-grid">
+      <div class="diff-item">
+        <h3>
+          <svg class="diff-icon" viewBox="0 0 24 24" fill="none" stroke="#c07a2b" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6v6H9z"/></svg>
+          Metodologia BIM / Autodesk Revit
+        </h3>
+        <p>Modelagem completa dos sistemas hidráulicos — compatibilização, quantitativos e documentação gerados a partir de um único modelo consistente.</p>
+      </div>
+      <div class="diff-item">
+        <h3>
+          <svg class="diff-icon" viewBox="0 0 24 24" fill="none" stroke="#c07a2b" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+          Conformidade normativa
+        </h3>
+        <p>Dimensionamento fundamentado em NBR 10339, NBR 5410 e demais normas técnicas aplicáveis — cada premissa registrada e rastreável.</p>
+      </div>
+      <div class="diff-item">
+        <h3>
+          <svg class="diff-icon" viewBox="0 0 24 24" fill="none" stroke="#c07a2b" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          Memorial de cálculo documentado
+        </h3>
+        <p>Vazão, tubulações e AMT calculados e justificados por escrito — não apenas o resultado, mas o raciocínio técnico por trás dele.</p>
+      </div>
+      <div class="diff-item">
+        <h3>
+          <svg class="diff-icon" viewBox="0 0 24 24" fill="none" stroke="#c07a2b" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg>
+          Protocolo estruturado, ponta a ponta
+        </h3>
+        <p>Briefing, memorial, modelagem, verificação e validação técnica seguem um fluxo fixo — sem etapas puladas, sem pendências esquecidas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="seguranca" class="safety-section">
+  <div class="container safety-grid">
+    <div class="stat-box">
+      <div class="stat-num">53%</div>
+      <div class="stat-label">dos óbitos por afogamento de crianças entre 1 e 9 anos no Brasil ocorrem em piscinas</div>
+      <div class="stat-source">FONTE: SOBRASA — Sociedade Brasileira de Salvamento Aquático</div>
+    </div>
+    <div class="safety-text">
+      <div class="eyebrow">Segurança</div>
+      <h2>Segurança é critério de projeto, não item de acabamento.</h2>
+      <p>Parcela significativa desses acidentes está associada a sistemas de sucção sem proteção adequada — situações tecnicamente evitáveis com um projeto bem dimensionado.</p>
+      <p>Na 4njos, cada projeto segue as exigências de segurança da NBR 10339:2018 desde o memorial de cálculo.</p>
+      <ul class="safety-list">
+        <li><span class="check">✓</span> Sistema de sucção com dois ralos de fundo interligados, distantes no mínimo 1,5 m entre si</li>
+        <li><span class="check">✓</span> Tampa antiaprisionamento nos ralos de fundo (ex: linha FSB, Sodramar)</li>
+        <li><span class="check">✓</span> Segurança elétrica conforme NBR 5410</li>
+        <li><span class="check">✓</span> Validação técnica registrada, com responsabilidade assumida por engenheiro habilitado</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="como-funciona">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Como funciona</div>
+      <h2>Um fluxo fixo, do primeiro contato à entrega.</h2>
+      <p>Cinco fases sequenciais garantem qualidade e rastreabilidade em qualquer projeto, do mais simples ao mais complexo.</p>
+    </div>
+    <div class="flow">
+      <div class="flow-step"><div class="step-num">1</div><h3>Briefing</h3><p>Coleta de dados do cliente e do projeto.</p></div>
+      <div class="flow-step"><div class="step-num">2</div><h3>Análise Técnica</h3><p>Cálculos conforme as NBRs aplicáveis.</p></div>
+      <div class="flow-step"><div class="step-num">3</div><h3>Desenvolvimento</h3><p>Modelagem BIM, desenhos e especificações.</p></div>
+      <div class="flow-step"><div class="step-num">4</div><h3>Aprovação</h3><p>Checklist interno + validação do engenheiro responsável.</p></div>
+      <div class="flow-step"><div class="step-num">5</div><h3>Entrega</h3><p>Documentação técnica completa e formalizada.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="projetos">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Projetos de destaque</div>
+      <h2>Confiança de quem já viu o processo de perto.</h2>
+    </div>
+    <div class="project-highlight">
+      <div class="ph-header">
+        <div class="client-name">CONSTRUTORA MONTSERRAT</div>
+        <h3>Jardim da Barra — Rio de Janeiro</h3>
+        <p>Projeto hidráulico completo em metodologia BIM: modelagem de subsistemas, casa de máquinas, dispositivos de segurança e documentação técnica integrada.</p>
+        <div class="project-badge">RIO DE JANEIRO, RJ</div>
+      </div>
+      <img class="ph-hero" src="assets/jardim-da-barra-geral.jpg" alt="Render isométrico geral do projeto hidráulico Jardim da Barra, com piscina, deck e paisagismo" />
+      <div class="ph-gallery">
+        <img src="assets/jardim-da-barra-detalhe-1.jpg" alt="Detalhe da execução hidráulica — parede técnica com registros e conexões" />
+        <img src="assets/jardim-da-barra-detalhe-2.jpg" alt="Detalhe da casa de máquinas — filtro e conjunto motobomba" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <h2>Vamos falar sobre o seu projeto?</h2>
+    <p>Construtoras, engenheiros, arquitetos e proprietários — fale diretamente com quem desenvolve o projeto, do briefing à entrega.</p>
+    <div class="cta-buttons">
+      <a class="btn-white" href="https://wa.me/5521969061121" target="_blank">Chamar no WhatsApp</a>
+      <a class="btn-outline-white" href="https://4njoshidropiscinas.com.br" target="_blank">4njoshidropiscinas.com.br</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  4njos — Projetos Hidráulicos de Piscinas · Rio de Janeiro, RJ
+</footer>
+
+</body>
+</html>
